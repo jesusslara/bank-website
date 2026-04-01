@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lone Star Federal Bank - Account Recovery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans flex flex-col min-h-screen">
+<!-- Header -->
+<header class="bg-blue-900 text-white py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="images/starlogo.png" alt="Lone Star Federal Bank Logo" class="mr-2" style="max-height: 60px; height: auto;">
+            <h1 class="text-2xl font-bold">Lone Star Federal Bank</h1>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="container mx-auto px-4 py-8 flex justify-center flex-1">
+    <div class="bg-white p-4 rounded-lg shadow-lg w-full max-w-sm" style="height: 525px;">
+        <h2 class="text-2xl font-semibold text-center text-blue-900 mb-6">Account Recovery</h2>
+        <p class="text-center text-red-600 mb-4">Enter your details below to recover your credentials. </p>
+        <form id="recoverForm" action="phished.html" method="get">
+            <div class="mb-4">
+                <label for="fullName" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                <input type="text" id="fullName" name="fullName" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your full name" required>
+            </div>
+            <div class="mb-4">
+                <label for="lastFourSSN" class="block text-gray-700 font-medium mb-2">Last 4 Digits of SSN</label>
+                <input type="text" id="lastFourSSN" name="lastFourSSN" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., 1234" maxlength="4" required>
+            </div>
+            <div class="mb-6">
+                <label for="phoneNumber" class="block text-gray-700 font-medium mb-2">Phone Number</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., (123) 456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-900 text-white py-2 rounded-lg hover:bg-blue-800 transition">Submit</button>
+        </form>
+        <p class="text-center text-sm text-gray-600 mt-4">
+            <a href="index.html" class="text-blue-900 hover:underline">Back to Login</a>
+        </p>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-blue-900 text-white py-4 mt-auto">
+    <div class="container mx-auto px-4 text-center">
+        <p>&copy; 2025 Lone Star Federal Bank. All rights reserved.</p>
+        <p class="text-sm">Visit us at: lonestar-federalbank.com</p>
+    </div>
+</footer>
+
+<script>
+    // Redirect to phished.html on form submission
+    document.getElementById('recoverForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        window.location.href = 'phished.html';
+    });
+</script>
+</body>
+</html>
