@@ -5,9 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lone Star Federal Bank - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Prevents scrolling while the disclaimer is active */
+        .modal-open { overflow: hidden; }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans">
-<!-- Header -->
+<body class="bg-gray-50 font-sans modal-open">
+
+<div id="educational-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-md p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8 border-t-8 border-yellow-500">
+        <div class="text-center mb-6">
+            <div class="bg-yellow-100 text-yellow-700 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900">Educational Simulation</h2>
+            <p class="text-gray-600 mt-2">
+                This website is a <strong>simulated phishing page</strong> created for cybersecurity awareness training and educational purposes only.
+            </p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="flex items-start">
+                <div class="flex items-center h-5">
+                    <input id="acknowledge" type="checkbox" class="focus:ring-blue-500 h-5 w-5 text-blue-600 border-gray-300 rounded cursor-pointer">
+                </div>
+                <div class="ml-3 text-sm">
+                    <label for="acknowledge" class="font-medium text-gray-700 cursor-pointer">
+                        I acknowledge that this is a fake website and I will not enter any real personal information.
+                    </label>
+                </div>
+            </div>
+
+            <button id="enter-site" disabled
+                    class="w-full bg-gray-300 text-gray-500 font-bold py-3 px-4 rounded-lg transition-all duration-200 cursor-not-allowed uppercase tracking-wide">
+                Access Simulation
+            </button>
+        </div>
+    </div>
+</div>
+
 <header class="bg-blue-900 text-white shadow-md">
     <div class="container mx-auto px-4 py-3">
         <div class="flex justify-between items-center">
@@ -30,7 +68,6 @@
     </div>
 </header>
 
-<!-- Hero Section -->
 <section class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-20">
     <div class="container mx-auto px-4 text-center">
         <h2 class="text-4xl font-bold mb-4">Welcome to Lone Star Federal Bank</h2>
@@ -42,7 +79,6 @@
     </div>
 </section>
 
-<!-- Features Section -->
 <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
         <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Lone Star?</h3>
@@ -72,7 +108,6 @@
     </div>
 </section>
 
-<!-- Promotions Section -->
 <section class="py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Special Offers</h3>
@@ -91,7 +126,6 @@
     </div>
 </section>
 
-<!-- Footer -->
 <footer class="bg-blue-900 text-white py-8">
     <div class="container mx-auto px-4">
         <div class="grid md:grid-cols-4 gap-8 mb-8">
@@ -136,12 +170,36 @@
 </footer>
 
 <script>
-    // Simple script to add a subtle phishing red flag: a fake security notice
-    window.addEventListener('load', function() {
-        if (confirm('Enable enhanced security features? This will improve your banking experience.')) {
-            alert('Security enabled! (Simulation: This is a common phishing tactic to gain trust.)');
+    const modal = document.getElementById('educational-modal');
+    const checkbox = document.getElementById('acknowledge');
+    const btn = document.getElementById('enter-site');
+
+    // Enable/Disable the button based on checkbox status
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            btn.disabled = false;
+            btn.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            btn.classList.add('bg-blue-600', 'text-white', 'hover:bg-blue-700', 'shadow-lg');
+        } else {
+            btn.disabled = true;
+            btn.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            btn.classList.remove('bg-blue-600', 'text-white', 'hover:bg-blue-700', 'shadow-lg');
         }
     });
+
+    // Close modal and trigger the "phishing simulation" script
+    btn.addEventListener('click', function() {
+        modal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+
+        // Trigger the original simulation alert after a short delay
+        setTimeout(() => {
+            if (confirm('Enable enhanced security features? This will improve your banking experience.')) {
+                alert('Security enabled! (Simulation: This is a common phishing tactic to gain trust.)');
+            }
+        }, 500);
+    });
 </script>
+
 </body>
 </html>
